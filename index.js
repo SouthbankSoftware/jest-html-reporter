@@ -1,3 +1,8 @@
+/**
+ * @Last modified by:   guiguan
+ * @Last modified time: 2017-06-13T15:22:26+10:00
+ */
+
 const path = require('path');
 const fs = require('fs');
 const xmlbuilder = require('xmlbuilder');
@@ -23,12 +28,10 @@ try {
  * @param  {String} filePath
  * @param  {Any} 	content
  */
-const writeFile = (filePath, content) => mkdirp(path.dirname(filePath), (err) => {
-	if (err) {
-		return console.log(`Something went wrong when creating the file: ${err}`);
-	}
-	return fs.writeFile(filePath, content);
-});
+const writeFile = (filePath, content) => {
+	mkdirp.sync(path.dirname(filePath));
+	fs.writeFileSync(filePath, content);
+};
 
 /**
  * Sets up a basic HTML page to apply the content to
